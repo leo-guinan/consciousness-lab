@@ -1,13 +1,14 @@
-# Architect Agent's Perspective
+# Educator Agent's Perspective
 
-This branch contains the architect agent's understanding of the repository.
+This branch contains the educator agent's understanding of the repository.
 
 ## Documentation
 
-- [ARCHITECTURE.md](docs/architect/ARCHITECTURE.md)
-- [API_REFERENCE.md](docs/architect/API_REFERENCE.md)
-- [MODULES.md](docs/architect/MODULES.md)
-- [DEPENDENCIES.md](docs/architect/DEPENDENCIES.md)
+- [GETTING_STARTED.md](docs/educator/GETTING_STARTED.md)
+- [TUTORIALS.md](docs/educator/TUTORIALS.md)
+- [EXAMPLES.md](docs/educator/EXAMPLES.md)
+- [FAQ.md](docs/educator/FAQ.md)
+- [LEARNING_PATH.md](docs/educator/LEARNING_PATH.md)
 
 ---
 
