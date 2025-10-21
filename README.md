@@ -1,14 +1,14 @@
-# Educator Agent's Perspective
+# Visionary Agent's Perspective
 
-This branch contains the educator agent's understanding of the repository.
+This branch contains the visionary agent's understanding of the repository.
 
 ## Documentation
 
-- [GETTING_STARTED.md](docs/educator/GETTING_STARTED.md)
-- [TUTORIALS.md](docs/educator/TUTORIALS.md)
-- [EXAMPLES.md](docs/educator/EXAMPLES.md)
-- [FAQ.md](docs/educator/FAQ.md)
-- [LEARNING_PATH.md](docs/educator/LEARNING_PATH.md)
+- [VISION.md](docs/visionary/VISION.md)
+- [ROADMAP.md](docs/visionary/ROADMAP.md)
+- [POSSIBILITIES.md](docs/visionary/POSSIBILITIES.md)
+- [COMPOSITION_PATTERNS.md](docs/visionary/COMPOSITION_PATTERNS.md)
+- [EVOLUTION.md](docs/visionary/EVOLUTION.md)
 
 ---
 
