@@ -6,7 +6,8 @@
   "type": "module",
   "bin": {
     "consciousness-lab": "./bin/cli.js",
-    "clab": "./bin/cli.js"
+    "clab": "./bin/cli.js",
+    "clab-agents": "./bin/agents.js"
   },
   "scripts": {
     "start": "node bin/cli.js",

@@ -3,16 +3,17 @@
  * Main exports
  */
 
-export { ModelAdapter } from './model-adapter.js';
-export { CharacterSystem } from './character-system.js';
-export { DialogueEngine } from './dialogue-engine.js';
-export { ExperimentOrchestrator } from './experiment-orchestrator.js';
+import { ModelAdapter } from './model-adapter.js';
+import { CharacterSystem } from './character-system.js';
+import { DialogueEngine } from './dialogue-engine.js';
+import { ExperimentOrchestrator } from './experiment-orchestrator.js';
+
+export { ModelAdapter, CharacterSystem, DialogueEngine, ExperimentOrchestrator };
 
 /**
  * Quick start helper
  */
 export async function createLab(config = {}) {
-  const { ExperimentOrchestrator } = await import('./experiment-orchestrator.js');
   const orchestrator = new ExperimentOrchestrator(config);
   await orchestrator.initialize();
   return orchestrator;
