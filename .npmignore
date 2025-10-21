@@ -1,0 +1,58 @@
+# Development files
+.git/
+.github/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment and config
+.env
+.env.*
+!.env.example
+
+# Test and coverage
+coverage/
+.nyc_output/
+*.test.js
+*.spec.js
+__tests__/
+
+# Build artifacts
+dist/
+build/
+*.tsbuildinfo
+
+# Logs and temp files
+*.log
+debug.log
+*.debug
+tmp/
+temp/
+*.tmp
+
+# Results and experiments (user-generated)
+results/
+experiments/
+output/
+
+# Lock files (users should generate their own)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+bun.lockb
+
+# Documentation that's not needed in package
+EXTRACTION_NOTES.md
+START_HERE.md
+.github/
+.git/
+
+# Development tools config
+.eslintrc*
+.prettierrc*
+tsconfig.json
+vitest.config.js
+

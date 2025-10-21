@@ -4,10 +4,38 @@
   "description": "Experimental framework for testing AI consciousness through recursive multi-agent dialogues",
   "main": "src/index.js",
   "type": "module",
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "types": "./types/index.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
   "bin": {
     "consciousness-lab": "./bin/cli.js",
-    "clab": "./bin/cli.js"
+    "clab": "./bin/cli.js",
+    "clab-agents": "./bin/agents.js"
   },
+  "files": [
+    "src/**/*.js",
+    "bin/**/*.js",
+    "characters/**/*.json",
+    "models/**/*.json",
+    "validation/**/*.js",
+    "validation/**/*.json",
+    "visualization/**/*.html",
+    "experiments/**/*.js",
+    "experiments/**/*.md",
+    "config.json",
+    "README.md",
+    "LICENSE",
+    "QUICKSTART.md",
+    "ARCHITECTURE.md",
+    "INTEGRATION.md",
+    "META_ANALYSIS.md",
+    "PUBLISHING.md",
+    ".env.example"
+  ],
   "scripts": {
     "start": "node bin/cli.js",
     "dev": "node --watch src/index.js",
@@ -15,7 +43,9 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint src/**/*.js",
     "validate": "node bin/validate.js",
-    "serve": "node bin/serve.js"
+    "serve": "node bin/serve.js",
+    "prepublishOnly": "bun run lint && bun run test",
+    "prepare": "chmod +x bin/cli.js"
   },
   "keywords": [
     "ai",
@@ -25,20 +55,36 @@
     "recursive",
     "meta-cognition",
     "llm",
-    "experimentation"
+    "experimentation",
+    "character-ai",
+    "recursive-dialogue",
+    "anthropic",
+    "claude",
+    "ollama",
+    "openrouter"
   ],
   "author": "Leo Guinan",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/consciousness-lab.git"
+    "url": "https://github.com/leoguinan/consciousness-lab.git"
   },
+  "bugs": {
+    "url": "https://github.com/leoguinan/consciousness-lab/issues"
+  },
+  "homepage": "https://github.com/leoguinan/consciousness-lab#readme",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "packageManager": "bun@1.0.0",
   "dependencies": {
+    "axios": "^1.6.2",
+    "chalk": "^5.3.0",
     "commander": "^11.1.0",
     "dotenv": "^16.3.1",
-    "chalk": "^5.3.0",
-    "ora": "^7.0.1",
-    "axios": "^1.6.2"
+    "express": "^5.1.0",
+    "ora": "^7.0.1"
   },
   "devDependencies": {
     "vitest": "^1.0.4",
@@ -46,7 +92,7 @@
     "typescript": "^5.3.3"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=18.0.0",
+    "bun": ">=1.0.0"
   }
 }
-

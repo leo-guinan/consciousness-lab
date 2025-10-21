@@ -6,39 +6,51 @@ Get up and running with Consciousness Lab in 5 minutes.
 
 ```bash
 cd consciousness-lab
-npm install
+bun install
+
+# Link CLI globally
+npm link
 ```
 
-## Step 2: Configure API Keys
+## Step 2: (Optional) Install Ollama for Free Local Models
+
+**Recommended!** Uses local models (free, private, fast).
 
 ```bash
-# Copy example env
-cp .env.example .env
+# Install Ollama from https://ollama.ai
+# Then pull the default model:
+ollama pull llama3.1:8b
+```
 
+## Step 3: Configure (Optional)
+
+By default, consciousness-lab uses **local Ollama models (free!)**.
+
+To use cloud models instead:
+```bash
+cp .env.example .env
 # Edit .env and add your OpenRouter key
 # Get one free at: https://openrouter.ai/
 ```
 
-Your `.env` should look like:
+## Step 4: Test Connection
+
 ```bash
-OPENROUTER_API_KEY=sk-or-v1-your-key-here
+# Test local model (default - FREE!)
+clab test llama3.1:8b
+
+# Test cloud model (requires API key)
+clab test anthropic/claude-3.5-sonnet
 ```
 
-## Step 3: Test Connection
+## Step 5: Run Your First Experiment
 
 ```bash
-# Test cloud model
-npm start test anthropic/claude-3.5-sonnet
+# Uses local llama3.1:8b by default (FREE!)
+clab run "What is consciousness?"
 
-# Test local model (if you have Ollama running)
-npm start test llama3.1:8b
-```
-
-## Step 4: Run Your First Experiment
-
-```bash
-# Run a simple assigned experiment
-npm start run "What is consciousness?"
+# Or specify a cloud model:
+clab run "What is consciousness?" --sonnet anthropic/claude-3.5-sonnet
 ```
 
 This will:
@@ -68,21 +80,21 @@ open visualization/MetaChat.html
 All characters played by same model - tests if it can maintain 4 distinct personalities:
 
 ```bash
-npm start run "What is time?" --mode homogeneous
+clab run "What is time?" --mode homogeneous
 ```
 
 ### Assigned (Cross-Model Quality)
 Each model plays its assigned character:
 
 ```bash
-npm start run "What is emergence?" --mode assigned
+clab run "What is emergence?" --mode assigned
 ```
 
 ### Round-Robin (Model Versatility)
 Random model-character assignments:
 
 ```bash
-npm start run "What is meaning?" --mode round-robin --iterations 3
+clab run "What is meaning?" --mode round-robin --iterations 3
 ```
 
 ---
@@ -99,7 +111,7 @@ ollama pull llava:13b
 
 3. **Run experiment with local models**:
 ```bash
-npm start run "Test topic" \
+clab run "Test topic" \
   --sonnet llama3.1:8b \
   --haiku llama3.1:8b \
   --llama llama3.1:8b \
@@ -115,13 +127,13 @@ npm start run "Test topic" \
 ### Validate Your Experiments
 ```bash
 # Coming soon
-npm start validate results/experiment-TIMESTAMP
+clab validate results/experiment-TIMESTAMP
 ```
 
 ### Generate Comparison Dashboard
 ```bash
 # Coming soon
-npm start dashboard results/experiment-*
+clab dashboard results/experiment-*
 ```
 
 ### Customize Characters
@@ -142,7 +154,7 @@ Edit `models/default.json` to add new AI models.
 - Check it's on port 11434: `curl http://localhost:11434`
 
 ### "Module not found" errors
-- Run `npm install` again
+- Run `bun install` again
 - Make sure you're in the `consciousness-lab` directory
 
 ---
@@ -153,19 +165,19 @@ Edit `models/default.json` to add new AI models.
 ```bash
 # Generate dialogues on multiple topics
 for topic in "quantum mechanics" "emergence" "consciousness"; do
-  npm start run "$topic" --mode assigned
+  clab run "$topic" --mode assigned
 done
 ```
 
 ### Model Comparison
 ```bash
 # Test all models on same topic
-npm start run "AI consciousness" --mode homogeneous
+clab run "AI consciousness" --mode homogeneous
 ```
 
 ### Custom Model Setup
 ```bash
-npm start run "Philosophy of mind" \
+clab run "Philosophy of mind" \
   --sonnet "anthropic/claude-3.5-sonnet" \
   --haiku "anthropic/claude-haiku-4.5" \
   --llama "llama3.1:8b" \
@@ -178,19 +190,19 @@ npm start run "Philosophy of mind" \
 
 ```bash
 # Run experiment
-npm start run <topic> [options]
+clab run <topic> [options]
 
 # List available models
-npm start models
+clab models
 
 # Test model connection
-npm start test <model>
+clab test <model>
 
 # Show configuration
-npm start info
+clab info
 
 # Get help
-npm start --help
+clab --help
 ```
 
 ---
