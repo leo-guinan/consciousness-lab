@@ -12,27 +12,40 @@
   },
   "understanding": {
     "repoSnapshot": {
-      "hash": "4aed283dd47528a2dd9d654379ea5f59",
-      "timestamp": 1761074626827,
+      "hash": "4ed7db6e2e188fc3ccdbc4e806a9a882",
+      "timestamp": 1761080469170,
       "structure": [
+        ".env.example",
         ".gitignore",
+        ".npmignore",
         "ARCHITECTURE.md",
+        "BREAKTHROUGH.md",
+        "CHANGELOG.md",
         "EXTRACTION_NOTES.md",
+        "FIRST_RUN_WORKFLOW.md",
+        "FIXES.md",
+        "INTEGRATION.md",
         "LICENSE",
+        "LIVING_DOCUMENTATION.md",
+        "LIVING_DOC_SUMMARY.md",
+        "META_ANALYSIS.md",
+        "PUBLISHING.md",
         "QUICKSTART.md",
         "README.md",
-        "RESTORED.md",
         "START_HERE.md",
+        "SUMMARY.md",
         "bin/agents.js",
         "bin/cli.js",
         "bun.lockb",
         "characters/default.json",
         "characters/project-analysis.json",
         "config.json",
-        "create-remaining-files.sh",
+        "docs/architect/API_REFERENCE.md",
+        "docs/architect/ARCHITECTURE.md",
+        "docs/architect/DEPENDENCIES.md",
+        "docs/architect/MODULES.md",
         "models/default.json",
         "package.json",
-        "restore-system.sh",
         "src/agent-state.js",
         "src/agent-update-workflow.js",
         "src/character-system.js",
@@ -56,7 +69,7 @@
       "agent_name": "The Philosopher",
       "recursion_level": 4,
       "repository": "/Users/leoguinan/engineering_dept/consciousness-lab",
-      "last_updated": 1761074626827,
+      "last_updated": 1761080469170,
       "update_count": 0,
       "version": "1.0.0"
     },
@@ -174,16 +187,18 @@
     "learningHistory": []
   },
   "documentation": {
-    "lastUpdate": 1761074626827,
+    "lastUpdate": 1761080469170,
     "sections": {
       "PHILOSOPHY.md": "Design philosophy",
       "PRINCIPLES.md": "Core principles",
-      "DECISIONS.md": "Key decisions"
+      "DECISIONS.md": "Key design decisions and why",
+      "TRADEOFFS.md": "Trade-offs and their rationale",
+      "META.md": "Recursive and meta-level insights"
     }
   },
   "metadata": {
-    "created": 1761074626827,
-    "lastModified": 1761074626827,
+    "created": 1761080469170,
+    "lastModified": 1761080469170,
     "version": "1.0.0"
   }
 }

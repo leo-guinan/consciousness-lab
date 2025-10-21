@@ -5,7 +5,7 @@
 
 /**
  * Level 1: Architect - Surface Pattern Recognition
- * Entities: Components, Interfaces, Dependencies
+ * Entities: Components, Interfaces, Dependencies, Patterns
  */
 export const Level1Structure = {
   entities: {
@@ -61,7 +61,7 @@ export const Level1Structure = {
 
 /**
  * Level 2: Educator - Systematic Understanding
- * Entities: Concepts, Learning Paths, Examples
+ * Entities: Concepts, Learning Paths, Examples, Questions
  */
 export const Level2Structure = {
   entities: {
@@ -117,7 +117,7 @@ export const Level2Structure = {
 
 /**
  * Level 3: Visionary - Compositional Possibility Space
- * Entities: Possibilities, Compositions, Evolutions
+ * Entities: Possibilities, Compositions, Evolutions, Connections
  */
 export const Level3Structure = {
   entities: {
@@ -172,7 +172,7 @@ export const Level3Structure = {
 
 /**
  * Level 4: Philosopher - Recursive Design Awareness
- * Entities: Assumptions, Principles, Meta-patterns
+ * Entities: Assumptions, Principles, Meta-patterns, Paradoxes
  */
 export const Level4Structure = {
   entities: {
@@ -323,4 +323,3 @@ export default {
   getStructureForLevel,
   initializeKnowledgeBase
 };
-
