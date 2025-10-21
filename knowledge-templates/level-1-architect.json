@@ -1,0 +1,74 @@
+{
+  "template_name": "Level 1: Architect - Surface Pattern Recognition",
+  "description": "Template for structural analysis and component mapping",
+  "recursion_level": 1,
+  "agent_type": "architect",
+  
+  "entity_types": {
+    "components": {
+      "description": "Code modules, classes, functions, files",
+      "example": {
+        "id": "dialogue-engine",
+        "name": "DialogueEngine",
+        "type": "module",
+        "location": "src/dialogue-engine.js",
+        "purpose": "Orchestrates multi-agent conversations",
+        "dependencies": ["model-adapter", "character-system"],
+        "exports": ["DialogueEngine", "createDialogue"],
+        "complexity": "high"
+      }
+    },
+    
+    "interfaces": {
+      "description": "APIs, contracts, interaction points",
+      "example": {
+        "id": "create-lab-api",
+        "name": "createLab",
+        "type": "api",
+        "inputs": [{"name": "config", "type": "object"}],
+        "outputs": [{"type": "Promise<ExperimentOrchestrator>"}],
+        "usage_pattern": "const lab = await createLab({ charactersPath: '...' })",
+        "stability": "stable"
+      }
+    },
+    
+    "dependencies": {
+      "description": "Relationships between components",
+      "example": {
+        "from": "dialogue-engine",
+        "to": "model-adapter",
+        "type": "requires",
+        "strength": "strong",
+        "notes": "DialogueEngine needs ModelAdapter to call AI models"
+      }
+    },
+    
+    "patterns": {
+      "description": "Recurring structural patterns",
+      "example": {
+        "name": "Event-Driven Architecture",
+        "category": "architectural",
+        "occurrences": ["dialogue-engine.js", "experiment-orchestrator.js"],
+        "implications": "Enables real-time updates and extensibility",
+        "recommendations": "Consider standardizing event naming"
+      }
+    }
+  },
+  
+  "analysis_questions": [
+    "What are the primary components and how do they interact?",
+    "Where are the API boundaries?",
+    "What dependencies exist (explicit and implicit)?",
+    "What structural patterns are used?",
+    "Where might brittleness or coupling exist?",
+    "How extensible is the current structure?"
+  ],
+  
+  "documentation_sections": {
+    "ARCHITECTURE.md": "System architecture and component diagram",
+    "API_REFERENCE.md": "Complete API documentation",
+    "MODULES.md": "Detailed module descriptions",
+    "DEPENDENCIES.md": "Dependency analysis and rationale"
+  }
+}
+

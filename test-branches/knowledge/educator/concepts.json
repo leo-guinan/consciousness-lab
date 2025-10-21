@@ -1,0 +1,15 @@
+[
+  {
+    "id": "basic-usage",
+    "name": "Basic Usage",
+    "difficulty": "beginner",
+    "prerequisites": [],
+    "explanation": "How to run your first experiment",
+    "why_matters": "Entry point for all users",
+    "common_mistakes": [
+      "Forgetting to configure API keys"
+    ],
+    "_added": 1761074793471,
+    "_id": "basic-usage"
+  }
+]

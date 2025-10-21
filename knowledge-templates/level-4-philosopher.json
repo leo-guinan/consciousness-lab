@@ -1,0 +1,127 @@
+{
+  "template_name": "Level 4: Philosopher - Recursive Design Awareness",
+  "description": "Template for meta-cognitive and philosophical analysis",
+  "recursion_level": 4,
+  "agent_type": "philosopher",
+  
+  "entity_types": {
+    "assumptions": {
+      "description": "Underlying assumptions in the design",
+      "example": {
+        "id": "fixed-character-count",
+        "assumption": "Dialogues work best with exactly 4 characters",
+        "implicit_or_explicit": "implicit",
+        "where_manifested": [
+          "characterOrder array defaults to 4 elements",
+          "Documentation examples all use 4 characters",
+          "UI visualizations assume 4 participants"
+        ],
+        "implications": [
+          "Limits flexibility for different dialogue sizes",
+          "Users may not realize they can customize",
+          "Constrains experimental designs"
+        ],
+        "alternatives": [
+          "Dynamic character count based on use case",
+          "Configurable dialogue sizes",
+          "Variable participant patterns"
+        ],
+        "validity": "questionable"
+      }
+    },
+    
+    "principles": {
+      "description": "Core design principles",
+      "example": {
+        "id": "multi-perspective-depth",
+        "principle": "Different recursion levels produce different insights",
+        "category": "interaction",
+        "embodiment": [
+          "Character system with 4 distinct awareness levels",
+          "Each agent analyzes from unique depth",
+          "Insights compound through debate"
+        ],
+        "violations": [],
+        "rationale": "Understanding emerges from perspective diversity, not single viewpoint analysis",
+        "tradeoffs": [
+          "More complex than single-agent",
+          "Requires managing multiple perspectives",
+          "Higher cognitive load for users"
+        ]
+      }
+    },
+    
+    "meta_patterns": {
+      "description": "Recursive and self-referential patterns",
+      "example": {
+        "id": "self-analysis-loop",
+        "pattern": "Tool analyzing its own design using its own mechanisms",
+        "recursion_level": 2,
+        "self_reference": true,
+        "implications": [
+          "Tool can improve itself",
+          "Understanding of analysis deepens through self-application",
+          "Reveals hidden assumptions through recursion"
+        ],
+        "emergence": "Agents evolve by debating the tool that enables their debate"
+      }
+    },
+    
+    "paradoxes": {
+      "description": "Productive tensions and contradictions",
+      "example": {
+        "id": "fixed-flexibility",
+        "paradox": "Tool is both domain-specific (consciousness) and domain-agnostic (any analysis)",
+        "where_occurs": [
+          "Package name suggests consciousness focus",
+          "Default characters are consciousness-themed",
+          "But system works for any multi-perspective analysis"
+        ],
+        "resolution_attempts": [
+          "Documentation explaining flexibility",
+          "Custom character examples",
+          "Renaming/repositioning"
+        ],
+        "productive_tension": "The specificity attracts users, the flexibility retains them"
+      }
+    },
+    
+    "design_decisions": {
+      "description": "Key choices and their rationale",
+      "example": {
+        "id": "turn-based-dialogue",
+        "decision": "Use strict turn-based dialogue structure",
+        "alternatives_considered": [
+          "Free-form conversation",
+          "Interrupt-driven dialogue",
+          "Asynchronous contributions"
+        ],
+        "chosen_because": "Ensures all perspectives heard, maintains fairness, easier to track",
+        "tradeoffs_accepted": [
+          "Less natural conversation flow",
+          "May miss emergent interruptions",
+          "Can feel mechanical"
+        ],
+        "reveals_about_values": "Values structure and fairness over organic spontaneity"
+      }
+    }
+  },
+  
+  "analysis_questions": [
+    "What does the design assume about understanding?",
+    "What philosophical commitments are embedded?",
+    "What paradoxes or tensions exist?",
+    "What do design decisions reveal about values?",
+    "How does the tool's design limit or enable thinking?",
+    "What recursive loops exist?"
+  ],
+  
+  "documentation_sections": {
+    "PHILOSOPHY.md": "Core design philosophy",
+    "PRINCIPLES.md": "Guiding principles",
+    "DECISIONS.md": "Key decisions and rationale",
+    "TRADEOFFS.md": "Accepted trade-offs and why",
+    "META.md": "Recursive and meta-level insights"
+  }
+}
+

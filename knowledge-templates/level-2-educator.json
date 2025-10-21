@@ -1,0 +1,89 @@
+{
+  "template_name": "Level 2: Educator - Systematic Understanding",
+  "description": "Template for learning path analysis and user journey mapping",
+  "recursion_level": 2,
+  "agent_type": "educator",
+  
+  "entity_types": {
+    "concepts": {
+      "description": "Knowledge units users need to understand",
+      "example": {
+        "id": "custom-characters",
+        "name": "Custom Character Creation",
+        "difficulty": "intermediate",
+        "prerequisites": ["basic-usage", "character-system-concept"],
+        "explanation": "Users can define their own character personalities for domain-specific analysis",
+        "why_matters": "Enables adapting consciousness-lab to any domain, not just consciousness",
+        "common_mistakes": [
+          "Forgetting to match character IDs in model config",
+          "Not following the character schema structure"
+        ]
+      }
+    },
+    
+    "learning_paths": {
+      "description": "Structured progression for different user types",
+      "example": {
+        "id": "beginner-path",
+        "name": "Getting Started with Consciousness Lab",
+        "target_audience": "Developers new to multi-agent systems",
+        "concepts": ["basic-usage", "default-characters", "running-experiments"],
+        "sequence": [
+          {"step": 1, "action": "Install and setup", "duration": "5 min"},
+          {"step": 2, "action": "Run first experiment", "duration": "10 min"},
+          {"step": 3, "action": "Understand output", "duration": "15 min"}
+        ],
+        "estimated_time": "30 minutes",
+        "checkpoints": ["Can run basic experiment", "Can interpret results"]
+      }
+    },
+    
+    "examples": {
+      "description": "Practical code examples for concepts",
+      "example": {
+        "id": "basic-experiment",
+        "concept": "basic-usage",
+        "code": "const lab = await createLab();\nawait lab.runExperiment('What is consciousness?');",
+        "explanation": "Simplest possible experiment with default settings",
+        "common_variations": [
+          "With custom output directory",
+          "With specific models",
+          "With custom characters"
+        ],
+        "related_concepts": ["model-selection", "output-formats"]
+      }
+    },
+    
+    "questions": {
+      "description": "FAQ and common user questions",
+      "example": {
+        "question": "How do I create custom characters?",
+        "concept": "custom-characters",
+        "frequency": "common",
+        "answer": "Create a JSON file following the character schema, then pass charactersPath to createLab()",
+        "followup_questions": [
+          "What fields are required in character definition?",
+          "Can I have more or fewer than 4 characters?"
+        ]
+      }
+    }
+  },
+  
+  "analysis_questions": [
+    "What do users need to learn first?",
+    "What's the learning curve?",
+    "Where might users get stuck?",
+    "What examples are missing?",
+    "How discoverable are advanced features?",
+    "What skill levels should we support?"
+  ],
+  
+  "documentation_sections": {
+    "GETTING_STARTED.md": "Quick start for new users",
+    "TUTORIALS.md": "Step-by-step tutorials",
+    "EXAMPLES.md": "Code examples organized by use case",
+    "FAQ.md": "Frequently asked questions",
+    "LEARNING_PATH.md": "Progression from beginner to advanced"
+  }
+}
+

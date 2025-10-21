@@ -4,6 +4,7 @@
 import { readFile, writeFile, mkdir } from 'fs/promises';
 import { join } from 'path';
 import crypto from 'crypto';
+import { initializeKnowledgeBase, getStructureForLevel } from './knowledge-structure.js';
 
 export class AgentState {
   constructor(agentId, basePath = './.agent-states') {
@@ -15,6 +16,10 @@ export class AgentState {
 
   async initialize(character, repoContext = {}) {
     await mkdir(this.basePath, { recursive: true });
+    
+    // Initialize knowledge base with structured entities
+    const knowledgeBase = initializeKnowledgeBase(character);
+    
     this.state = {
       agent: {
         id: this.agentId,
@@ -39,6 +44,7 @@ export class AgentState {
         assumptions: [],
         recommendations: []
       },
+      knowledge: knowledgeBase, // Structured knowledge base
       evolution: {
         transformations: [],
         learningHistory: []
@@ -201,6 +207,163 @@ ${this.state.understanding.insights.slice(-3).map(i => `- ${i}`).join('\n') || '
     if (!this.state) return true;
     const newHash = this.hashObject(newRepoContext);
     return newHash !== this.state.understanding.repoSnapshot.hash;
+  }
+
+  /**
+   * Add entity to knowledge base
+   */
+  addEntity(entityType, entityData) {
+    if (!this.state || !this.state.knowledge) {
+      throw new Error('Knowledge base not initialized');
+    }
+
+    if (!this.state.knowledge.entities[entityType]) {
+      this.state.knowledge.entities[entityType] = [];
+    }
+
+    // Add timestamp and ID if not present
+    const entity = {
+      ...entityData,
+      _added: Date.now(),
+      _id: entityData.id || this.generateEntityId(entityType)
+    };
+
+    this.state.knowledge.entities[entityType].push(entity);
+    this.state.knowledge.metadata.update_count++;
+    this.state.knowledge.metadata.last_updated = Date.now();
+  }
+
+  /**
+   * Generate entity ID
+   */
+  generateEntityId(entityType) {
+    const timestamp = Date.now();
+    const random = Math.random().toString(36).substring(7);
+    return `${entityType}_${timestamp}_${random}`;
+  }
+
+  /**
+   * Export knowledge base to Git branch format
+   */
+  async exportToBranch(branchPath) {
+    if (!this.state || !this.state.knowledge) {
+      throw new Error('No knowledge to export');
+    }
+
+    const agentDir = join(branchPath, 'knowledge', this.agentId);
+    await mkdir(agentDir, { recursive: true });
+
+    // Save main knowledge file
+    await writeFile(
+      join(agentDir, 'knowledge-base.json'),
+      JSON.stringify(this.state.knowledge, null, 2)
+    );
+
+    // Save entity files per type
+    const structure = getStructureForLevel(this.state.agent.level);
+    for (const [entityType, entityList] of Object.entries(this.state.knowledge.entities)) {
+      if (entityList.length > 0) {
+        await writeFile(
+          join(agentDir, `${entityType}.json`),
+          JSON.stringify(entityList, null, 2)
+        );
+
+        // Also create markdown representation
+        const md = this.generateEntityMarkdown(entityType, entityList, structure);
+        await writeFile(
+          join(agentDir, `${entityType}.md`),
+          md
+        );
+      }
+    }
+
+    // Save human-readable summary
+    const summary = this.generateKnowledgeSummary();
+    await writeFile(join(agentDir, 'README.md'), summary);
+
+    // Save state snapshot
+    await writeFile(
+      join(agentDir, 'agent-state.json'),
+      JSON.stringify(this.state, null, 2)
+    );
+  }
+
+  /**
+   * Generate markdown for entities
+   */
+  generateEntityMarkdown(entityType, entities, structure) {
+    const schema = structure.entities[entityType]?.schema || {};
+    
+    let md = `# ${entityType.charAt(0).toUpperCase() + entityType.slice(1)}\n\n`;
+    md += `**Entity Type:** ${structure.entities[entityType]?.type || 'unknown'}  \n`;
+    md += `**Count:** ${entities.length}  \n`;
+    md += `**Last Updated:** ${new Date().toISOString()}  \n\n`;
+    md += `---\n\n`;
+
+    entities.forEach((entity, index) => {
+      md += `## ${index + 1}. ${entity.name || entity.id || 'Unnamed'}\n\n`;
+      
+      // Display fields based on schema
+      Object.keys(schema).forEach(field => {
+        if (entity[field] !== undefined) {
+          const value = Array.isArray(entity[field]) 
+            ? entity[field].join(', ') 
+            : typeof entity[field] === 'object'
+            ? JSON.stringify(entity[field], null, 2)
+            : entity[field];
+          md += `**${field}:** ${value}  \n`;
+        }
+      });
+      
+      md += `\n---\n\n`;
+    });
+
+    return md;
+  }
+
+  /**
+   * Generate knowledge summary for README
+   */
+  generateKnowledgeSummary() {
+    if (!this.state || !this.state.knowledge) return '';
+
+    const kb = this.state.knowledge;
+    const agent = this.state.agent;
+
+    let summary = `# ${agent.name}'s Knowledge Base\n\n`;
+    summary += `**Recursion Level:** ${agent.level} - ${agent.levelName}  \n`;
+    summary += `**Last Updated:** ${new Date(kb.metadata.last_updated).toISOString()}  \n`;
+    summary += `**Updates:** ${kb.metadata.update_count}  \n`;
+    summary += `**Evolved:** ${agent.evolved ? 'Yes' : 'No'}  \n\n`;
+    
+    summary += `## Knowledge Structure\n\n`;
+    summary += `This knowledge base follows Level ${agent.level} entity structure:\n\n`;
+    
+    Object.entries(kb.entities).forEach(([type, entities]) => {
+      summary += `- **${type}**: ${entities.length} entities\n`;
+    });
+
+    summary += `\n## Recent Insights\n\n`;
+    const recentInsights = kb.insights.slice(-5);
+    recentInsights.forEach((insight, i) => {
+      summary += `${i + 1}. ${insight}\n`;
+    });
+
+    summary += `\n## Understanding Summary\n\n`;
+    summary += `${kb.understanding.summary}\n\n`;
+    summary += `**Confidence Level:** ${kb.understanding.confidence_level}  \n\n`;
+
+    if (kb.understanding.areas_of_uncertainty.length > 0) {
+      summary += `### Areas of Uncertainty\n\n`;
+      kb.understanding.areas_of_uncertainty.forEach(area => {
+        summary += `- ${area}\n`;
+      });
+    }
+
+    summary += `\n---\n\n`;
+    summary += `*This knowledge base is automatically maintained and evolves with the repository.*\n`;
+
+    return summary;
   }
 }
 

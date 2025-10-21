@@ -61,33 +61,59 @@ This branch contains the ${agentId} agent's understanding of the repository.
   async updateAgentBranch(agentId, agentState, updateContent) {
     const branchName = `${this.agentBranchPrefix}${agentId}`;
     console.log(`\n🔄 Updating ${branchName}...`);
+    
+    // Switch to agent branch
     await this.execGit(`git checkout ${branchName}`);
+    
+    // Merge main to keep code in sync
     try {
       await this.execGit(`git merge ${this.mainBranch} -m "Merge main into ${branchName}"`);
     } catch (error) {
       console.log(`  ⚠️  Merge conflicts`);
     }
+    
+    // Export knowledge base to branch (structured entities)
+    await agentState.exportToBranch(this.repoPath);
+    console.log(`  📚 Knowledge base exported`);
+    
+    // Generate documentation
     const docs = agentState.generateDocumentation();
     for (const [filename, content] of Object.entries(docs)) {
       const filePath = join(this.repoPath, 'docs', agentId, filename);
       await mkdir(join(this.repoPath, 'docs', agentId), { recursive: true });
       await writeFile(filePath, content);
     }
+    
+    // Add any additional updates
     if (updateContent) {
       for (const [file, content] of Object.entries(updateContent)) {
         const filePath = join(this.repoPath, 'docs', agentId, file);
         await writeFile(filePath, content);
       }
     }
-    await this.execGit('git add docs/');
+    
+    // Commit all changes (docs + knowledge)
+    await this.execGit('git add docs/ knowledge/');
+    
     try {
-      await this.execGit(`git commit -m "Update ${agentId} understanding"`);
+      const commitMsg = `Update ${agentId} understanding
+
+- Knowledge entities updated
+- Documentation regenerated  
+- Repository hash: ${agentState.state.understanding.repoSnapshot.hash}
+- Timestamp: ${new Date().toISOString()}`;
+      
+      await this.execGit(`git commit -m "${commitMsg}"`);
       console.log(`  ✓ Updated and committed`);
     } catch (error) {
       if (error.message.includes('nothing to commit')) {
         console.log(`  ℹ️  No changes`);
+      } else {
+        throw error;
       }
     }
+    
+    // Return to main
     await this.execGit(`git checkout ${this.mainBranch}`);
   }
 

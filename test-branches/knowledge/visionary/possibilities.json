@@ -1,0 +1,17 @@
+[
+  {
+    "id": "voice-dialogues",
+    "name": "Voice-Enabled Dialogues",
+    "category": "extension",
+    "current_blockers": [
+      "No TTS integration"
+    ],
+    "enabling_changes": [
+      "Add voice parameters"
+    ],
+    "impact": "transformative",
+    "timeframe": "medium",
+    "_added": 1761074793473,
+    "_id": "voice-dialogues"
+  }
+]

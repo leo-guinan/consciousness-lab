@@ -1,0 +1,95 @@
+{
+  "template_name": "Level 3: Visionary - Compositional Possibility Space",
+  "description": "Template for exploring potential and emergent compositions",
+  "recursion_level": 3,
+  "agent_type": "visionary",
+  
+  "entity_types": {
+    "possibilities": {
+      "description": "Potential features, uses, or adaptations",
+      "example": {
+        "id": "voice-enabled-dialogues",
+        "name": "Voice-Enabled Character Dialogues",
+        "category": "extension",
+        "current_blockers": [
+          "No audio generation integration",
+          "Character voices not defined",
+          "Streaming architecture needed"
+        ],
+        "enabling_changes": [
+          "Integrate TTS API",
+          "Add voice parameters to character schema",
+          "Implement streaming dialogue mode"
+        ],
+        "impact": "transformative",
+        "timeframe": "medium"
+      }
+    },
+    
+    "compositions": {
+      "description": "Ways existing components could combine",
+      "example": {
+        "id": "adaptive-documentation-generator",
+        "name": "Self-Updating Documentation System",
+        "components": ["dialogue-engine", "character-system", "github-integration"],
+        "emergent_properties": [
+          "Documentation that evolves with code",
+          "Multiple perspective documentation",
+          "Living institutional knowledge"
+        ],
+        "use_cases": [
+          "Auto-maintained project docs",
+          "Onboarding materials",
+          "Architecture decision records"
+        ],
+        "implementation_sketch": "Combine dialogue system with Git hooks to generate docs from agent perspectives"
+      }
+    },
+    
+    "evolutions": {
+      "description": "How the project could evolve over time",
+      "example": {
+        "id": "domain-agnostic-framework",
+        "current_state": "Focused on consciousness testing",
+        "future_state": "General-purpose multi-perspective analysis framework",
+        "transition_path": [
+          "Recognize 'consciousness' is just one use case",
+          "Create domain-specific character templates",
+          "Document non-consciousness applications",
+          "Rebrand as multi-perspective analysis tool"
+        ],
+        "catalysts": ["User requests", "Meta-analysis reveals flexibility"],
+        "implications": ["Broader adoption", "More use cases", "Requires clearer positioning"]
+      }
+    },
+    
+    "connections": {
+      "description": "Relationships between possibilities",
+      "example": {
+        "from": "voice-enabled-dialogues",
+        "to": "podcast-generation",
+        "type": "enables",
+        "strength": "strong",
+        "description": "Voice dialogues enable automatic podcast creation from experiments"
+      }
+    }
+  },
+  
+  "analysis_questions": [
+    "What could this become?",
+    "What combinations haven't been explored?",
+    "What's enabled by current capabilities?",
+    "What would unlock new possibilities?",
+    "How could components compose in unexpected ways?",
+    "What future use cases are latent in the design?"
+  ],
+  
+  "documentation_sections": {
+    "VISION.md": "Long-term vision and direction",
+    "ROADMAP.md": "Planned features and milestones",
+    "POSSIBILITIES.md": "Explored and unexplored potentials",
+    "COMPOSITION_PATTERNS.md": "How features could combine",
+    "EVOLUTION.md": "How the project is evolving"
+  }
+}
+
