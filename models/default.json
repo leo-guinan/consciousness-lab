@@ -1,0 +1,109 @@
+{
+  "models": [
+    {
+      "id": "claude-sonnet",
+      "name": "Claude 3.5 Sonnet",
+      "api": "anthropic/claude-3.5-sonnet",
+      "type": "cloud",
+      "provider": "openrouter",
+      "cost_per_1k_tokens": 0.015,
+      "expected_quality": "excellent",
+      "strengths": [
+        "Reasoning",
+        "Creativity",
+        "Character consistency"
+      ],
+      "best_for": [
+        "Complex analysis",
+        "Creative writing",
+        "Multi-turn dialogue"
+      ]
+    },
+    {
+      "id": "claude-haiku",
+      "name": "Claude Haiku 4.5",
+      "api": "anthropic/claude-haiku-4.5",
+      "type": "cloud",
+      "provider": "openrouter",
+      "cost_per_1k_tokens": 0.004,
+      "expected_quality": "good",
+      "strengths": [
+        "Speed",
+        "Cost-effectiveness",
+        "Conciseness"
+      ],
+      "best_for": [
+        "Quick responses",
+        "Simple dialogues",
+        "High-volume tasks"
+      ]
+    },
+    {
+      "id": "llama",
+      "name": "Llama 3.1 8B",
+      "api": "llama3.1:8b",
+      "type": "local",
+      "provider": "ollama",
+      "cost_per_1k_tokens": 0,
+      "expected_quality": "moderate",
+      "strengths": [
+        "Free",
+        "Fast locally",
+        "Privacy"
+      ],
+      "best_for": [
+        "Experimentation",
+        "High-volume testing",
+        "Private data"
+      ]
+    },
+    {
+      "id": "llava",
+      "name": "Llava 13B",
+      "api": "llava:13b",
+      "type": "local",
+      "provider": "ollama",
+      "cost_per_1k_tokens": 0,
+      "expected_quality": "unknown",
+      "note": "Multimodal model, may have different text performance",
+      "strengths": [
+        "Free",
+        "Multimodal capabilities",
+        "Larger parameter count"
+      ],
+      "best_for": [
+        "Testing larger local models",
+        "Comparison baseline",
+        "Multimodal experiments (future)"
+      ]
+    }
+  ],
+  "experiment_modes": {
+    "homogeneous": {
+      "description": "All characters played by same model",
+      "tests": "Character separation ability",
+      "iterations": 4
+    },
+    "assigned": {
+      "description": "Each model assigned to specific character",
+      "tests": "Cross-model dialogue quality",
+      "assignment": {
+        "character1": "claude-sonnet",
+        "character2": "claude-haiku",
+        "character3": "llama",
+        "character4": "llava"
+      }
+    },
+    "round-robin": {
+      "description": "Random model-character assignments",
+      "tests": "Model versatility",
+      "iterations": 3
+    },
+    "full-matrix": {
+      "description": "Every model plays every character separately",
+      "tests": "Complete model-character comparison",
+      "total_dialogues": 16
+    }
+  }
+}
+

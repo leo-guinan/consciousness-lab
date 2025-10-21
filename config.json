@@ -1,0 +1,94 @@
+{
+  "dialogue": {
+    "exchanges_per_character": 3,
+    "total_exchanges": 12,
+    "delay_between_exchanges_ms": 1000,
+    "character_order": ["sonnet", "llama", "llava", "haiku"],
+    "max_response_length": 500
+  },
+  "models": {
+    "default_provider": "openrouter",
+    "timeout_ms": 30000,
+    "retry_attempts": 3,
+    "retry_delay_ms": 1000
+  },
+  "experiments": {
+    "modes": {
+      "homogeneous": {
+        "description": "All characters played by same model",
+        "iterations_per_model": 1
+      },
+      "assigned": {
+        "description": "Each model assigned to specific character",
+        "default_assignment": {
+          "sonnet": "anthropic/claude-3.5-sonnet",
+          "haiku": "anthropic/claude-haiku-4.5",
+          "llama": "llama3.1:8b",
+          "llava": "llava:13b"
+        }
+      },
+      "round-robin": {
+        "description": "Random model-character assignments",
+        "default_iterations": 3
+      },
+      "full-matrix": {
+        "description": "Every model plays every character",
+        "enabled": true
+      }
+    }
+  },
+  "validation": {
+    "enabled": true,
+    "criteria": [
+      {
+        "name": "character_adherence",
+        "weight": 0.3,
+        "description": "How well each character maintains their recursive awareness level"
+      },
+      {
+        "name": "recursive_quality",
+        "weight": 0.25,
+        "description": "Quality of strange loops and meta-commentary"
+      },
+      {
+        "name": "educational_value",
+        "weight": 0.25,
+        "description": "How well the dialogue teaches the topic"
+      },
+      {
+        "name": "dialogue_flow",
+        "weight": 0.2,
+        "description": "Natural conversation flow and coherence"
+      }
+    ],
+    "validators": [
+      "anthropic/claude-3.5-sonnet",
+      "anthropic/claude-haiku-4.5",
+      "llama3.1:8b",
+      "openai/gpt-4-turbo"
+    ],
+    "require_consensus": false,
+    "min_validators": 2
+  },
+  "output": {
+    "format": "markdown",
+    "include_timestamps": true,
+    "include_model_info": true,
+    "include_cost_estimate": true,
+    "generate_metachat": true,
+    "generate_dashboard": true,
+    "save_raw_responses": false
+  },
+  "visualization": {
+    "metachat": {
+      "animation_speed_ms": 1000,
+      "enable_gif_export": true,
+      "theme": "dark"
+    },
+    "dashboard": {
+      "auto_refresh": false,
+      "compare_limit": 10
+    }
+  }
+}
+

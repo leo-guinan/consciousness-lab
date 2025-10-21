@@ -1,0 +1,52 @@
+{
+  "name": "consciousness-lab",
+  "version": "0.1.0",
+  "description": "Experimental framework for testing AI consciousness through recursive multi-agent dialogues",
+  "main": "src/index.js",
+  "type": "module",
+  "bin": {
+    "consciousness-lab": "./bin/cli.js",
+    "clab": "./bin/cli.js"
+  },
+  "scripts": {
+    "start": "node bin/cli.js",
+    "dev": "node --watch src/index.js",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src/**/*.js",
+    "validate": "node bin/validate.js",
+    "serve": "node bin/serve.js"
+  },
+  "keywords": [
+    "ai",
+    "consciousness",
+    "dialogue",
+    "multi-agent",
+    "recursive",
+    "meta-cognition",
+    "llm",
+    "experimentation"
+  ],
+  "author": "Leo Guinan",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/consciousness-lab.git"
+  },
+  "dependencies": {
+    "commander": "^11.1.0",
+    "dotenv": "^16.3.1",
+    "chalk": "^5.3.0",
+    "ora": "^7.0.1",
+    "axios": "^1.6.2"
+  },
+  "devDependencies": {
+    "vitest": "^1.0.4",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
+
